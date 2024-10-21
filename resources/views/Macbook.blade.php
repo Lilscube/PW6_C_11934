@@ -88,45 +88,29 @@
     <div class="content">
         <div class="catalog-container"> 
             <div class="text-center mb-3">
-                <h1 class="catalog-title">Our Catalog</h1>
+                <h1 class="catalog-title">Our Macbook Series</h1>
             </div>
             <div class="catalog-subtitle">
                 We are committed to crafting high-quality products that not only meet your needs but also enhance your everyday life. We believe in innovation and excellence, ensuring every item we create brings joy and satisfaction.
             </div>
             <div class="divider"></div>
-            <div class="row"> 
-                @if ($products->isEmpty())
+            <div class="row flex-row flex-nowrap overflow-auto">
+                @if ($macbooks->isEmpty())
                     <div class="col-12 text-center">
                         <h5 class="text-muted text-danger">Data Kosong</h5>
                     </div>
                 @else
-                    @foreach ($products as $product)
-                        <div class="col-md-4 mb-3">
+                    @foreach ($macbooks as $macbook)
+                        <div class="col-md-3 mb-3">
                             <div class="card">
                                 <div class="p-3 text-center">
-                                    @if ($product->product == "Macbook")
-                                        <img src="{{asset('images/macbook.jpg')}}" alt="macbook">
-                                    @else    
-                                        <img src="{{asset('images/iphone.jpg')}}" alt="iphone">
-                                    @endif
-                                    <h1>{{ $product->product }}</h1>
-                                    <p>{{ $product->deskripsi }}</p>
-
-                                    @if ($product->product == "Macbook")
-                                        <a href="{{url('Macbook')}}" class="btn btn-outline-dark">View Product</a>
-                                    @else    
-                                        <a href="{{url('Iphone')}}" class="btn btn-outline-dark">View Product</a>
-                                    @endif
-
+                                    <img src="{{asset('images/macbook.jpg')}}" alt="macbook" class="img-fluid">
+                                    <h1>{{ $macbook->series}}</h1>
+                                    <p>{{ 'Rp ' . number_format($macbook->price, 0, ',', '.') }}</p>
                                 </div>
-                                    
                             </div>
                         </div>
-                        @if (($loop->iteration % 3) == 0) 
-                            </div><div class="row"> 
-                        @endif
                     @endforeach
-                    </div> 
                 @endif
             </div> 
         </div>
